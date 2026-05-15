@@ -47,3 +47,115 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
 }
+
+.project-card {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.project-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.project-summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-summary-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-summary-hint::after {
+  content: '↓';
+  font-size: 0.85rem;
+}
+
+.project-card[open] .project-summary-hint {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(2px);
+}
+
+.project-card[open] .project-summary-hint::after {
+  content: '↑';
+}
+
+.project-details {
+  padding-top: 0.5rem;
+}
+
+.project-card .project-details {
+  display: none;
+}
+
+.project-card[open] .project-details {
+  display: block;
+}
+
+.projects-panel {
+  position: relative;
+  padding: 0;
+}
+
+.projects-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  padding-bottom: 0.5rem;
+}
+
+.projects-summary::-webkit-details-marker {
+  display: none;
+}
+
+.projects-summary-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(244, 244, 245, 0.8);
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.projects-summary-hint::after {
+  content: '↓';
+  font-size: 0.85rem;
+}
+
+.projects-panel[open] .projects-summary-hint {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(2px);
+}
+
+.projects-summary:hover .projects-summary-hint,
+.projects-summary:focus-visible .projects-summary-hint {
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.projects-panel[open] .projects-summary-hint::after {
+  content: '↑';
+}
+
+.projects-body {
+  margin-top: 1.5rem;
+}
