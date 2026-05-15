@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laureano Enrique - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f0f12;
+            --card: #16161a;
+            --card-hover: #1e1e24;
+            --text: #e8e8ec;
+            --text-muted: #8b8b96;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --border: #26262e;
+            --border-hover: #3f3f4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.3);
+            border: 3px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .role {
+            font-size: 1.3rem;
+            color: var(--accent-light);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .location {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .hero .bio {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btns a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-header h2 i {
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--accent-light);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--text);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Experience & Education */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .timeline-item .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-item .company {
+            color: var(--accent-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .timeline-item .date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.03);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .project-card .card-header {
+            padding: 1.8rem 1.8rem 0;
+        }
+
+        .project-card .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            padding: 0 1.8rem;
+            flex-grow: 1;
+        }
+
+        .project-card .card-footer {
+            padding: 1.2rem 1.8rem 1.8rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-card .tech-tag {
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--accent-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .project-card .card-links {
+            padding: 0 1.8rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-card .card-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .project-card .card-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Certifications */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .cert-card i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-top: 0.2rem;
+        }
+
+        .cert-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .cert-card span {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .role { font-size: 1.1rem; }
+            section { padding: 4rem 1.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="avatar">LE</div>
+            <h1>Laureano Enrique</h1>
+            <p class="role">Estudiante de Ingeniería en Sistemas</p>
+            <p class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                Buenos Aires, Argentina
+            </p>
+            <p class="bio">
+                Apasionado por la ingeniería, el desarrollo de software, el trading y las finanzas. 
+                Me especializo en automatización de procesos y scripting, con un fuerte interés en 
+                construir proyectos impactantes para startups y pequeñas empresas tecnológicas.
+            </p>
+            <div class="contact-btns">
+                <a href="mailto:Laureanoenrique29@gmail.com" class="btn-primary">
+                    <i class="fas fa-envelope"></i> Contactame
+                </a>
+                <a href="https://github.com/" target="_blank" class="btn-outline">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/" target="_blank" class="btn-outline">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down" onclick="document.getElementById('skills').scrollIntoView()">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-code"></i> Aptitudes & Skills</h2>
+            <p>Tecnologías y herramientas con las que trabajo</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <h3><i class="fab fa-python"></i> Lenguajes</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+            <div class="skill-category fade-in">
+                <h3><i class="fas fa-server"></i> Frameworks & Backend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Spring Boot</span>
+                </div>
+            </div>
+            <div class="skill-category fade-in">
+                <h3><i class="fas fa-database"></i> Bases de Datos</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">Databases</span>
+                </div>
+            </div>
+            <div class="skill-category fade-in">
+                <h3><i class="fas fa-terminal"></i> Sistemas & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Linux (Kali, Ubuntu)</span>
+                    <span class="skill-tag">macOS</span>
+                    <span class="skill-tag">Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-briefcase"></i> Experiencia</h2>
+            <p>Mi trayectoria profesional</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="header">
+                    <div>
+                        <h3>Food & Beverage</h3>
+                        <p class="company">Sun Valley Company — Estados Unidos</p>
+                    </div>
+                    <span class="date">Dic 2022 – Abr 2023 / Dic 2023 – Abr 2024</span>
+                </div>
+                <p>
+                    Durante mi estadía de 8 meses trabajé en el departamento de Food and Beverage, 
+                    realizando tareas de preparación de alimentos, atención al cliente y mantenimiento 
+                    de la limpieza y organización del comedor. Colaboré con colegas internacionales, 
+                    fortaleciendo mis habilidades de comunicación y trabajo en equipo en entornos 
+                    multiculturales y de alta presión.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-graduation-cap"></i> Educación</h2>
+            <p>Formación académica</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="header">
+                    <div>
+                        <h3>Ingeniería en Sistemas de Información</h3>
+                        <p class="company">Universidad Tecnológica Nacional (UTN-FRBA)</p>
+                    </div>
+                    <span class="date">Abr 2020 – Presente</span>
+                </div>
+                <p>
+                    Carrera de grado enfocada en el desarrollo de soluciones tecnológicas, 
+                    programación, bases de datos, redes y sistemas de información.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-certificate"></i> Certificaciones</h2>
+            <p>Cursos y certificados obtenidos</p>
+        </div>
+        <div class="certs-grid">
+            <div class="cert-card fade-in">
+                <i class="fas fa-award"></i>
+                <div>
+                    <h4>CS50X — Introducción a la Ciencia de la Computación</h4>
+                    <span>Harvard University</span>
+                </div>
+            </div>
+            <div class="cert-card fade-in">
+                <i class="fas fa-award"></i>
+                <div>
+                    <h4>CS50X — Python</h4>
+                    <span>Harvard University</span>
+                </div>
+            </div>
+            <div class="cert-card fade-in">
+                <i class="fas fa-award"></i>
+                <div>
+                    <h4>CS50X — Git</h4>
+                    <span>Harvard University</span>
+                </div>
+            </div>
+            <div class="cert-card fade-in">
+                <i class="fas fa-award"></i>
+                <div>
+                    <h4>CS50X — HTML/CSS</h4>
+                    <span>Harvard University</span>
+                </div>
+            </div>
+            <div class="cert-card fade-in">
+                <i class="fab fa-linkedin"></i>
+                <div>
+                    <h4>Advanced Python</h4>
+                    <span>LinkedIn Learning</span>
+                </div>
+            </div>
+            <div class="cert-card fade-in">
+                <i class="fab fa-linkedin"></i>
+                <div>
+                    <h4>Python Esencial</h4>
+                    <span>LinkedIn Learning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-language"></i> Idiomas</h2>
+            <p>Comunicación multilingüe</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <h3><i class="fas fa-flag"></i> Español</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Nativo</span>
+                </div>
+            </div>
+            <div class="skill-category fade-in">
+                <h3><i class="fas fa-flag-usa"></i> Inglés</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Fluido — Experiencia laboral en USA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header fade-in">
+            <h2><i class="fas fa-rocket"></i> Proyectos</h2>
+            <p>Algunos de mis proyectos personales y académicos</p>
+        </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                    <h3>Trading Bot</h3>
+                </div>
+                <p>
+                    Bot de trading automatizado desarrollado en Python para análisis técnico 
+                    y ejecución de estrategias de trading. Incluye indicadores técnicos y 
+                    gestión de riesgo.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                    <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">APIs</span>
+                    <span class="tech-tag">Pandas</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-robot"></i></div>
+                    <h3>Automatización de Procesos</h3>
+                </div>
+                <p>
+                    Scripts de automatización para tareas repetitivas usando Bash y Python. 
+                    Optimización de flujos de trabajo y procesamiento de datos.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Bash</span>
+                    <span class="tech-tag">Linux</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-globe"></i></div>
+                    <h3>Web App con Django</h3>
+                </div>
+                <p>
+                    Aplicación web full-stack construida con Django. Sistema de gestión con 
+                    autenticación de usuarios, panel de administración y base de datos relacional.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                    <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Herramientas de Seguridad</h3>
+                </div>
+                <p>
+                    Scripts y herramientas de ciberseguridad desarrolladas en entornos Linux (Kali). 
+                    Análisis de redes, escaneo de puertos y auditoría de sistemas.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Bash</span>
+                    <span class="tech-tag">Kali Linux</span>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-database"></i></div>
+                    <h3>Gestor de Base de Datos</h3>
+                </div>
+                <p>
+                    Sistema de gestión de bases de datos con SQL Server y MySQL. Diseño de esquemas, 
+                    consultas optimizadas y procedimientos almacenados.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">SQL Server</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card fade-in">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>API REST con Spring Boot</h3>
+                </div>
+                <p>
+                    API RESTful desarrollada con Spring Boot para gestión de recursos. 
+                    Documentación con Swagger, autenticación JWT y pruebas unitarias.
+                </p>
+                <div class="card-links">
+                    <a href="#"><i class="fab fa-github"></i> Código</a>
+                </div>
+                <div class="card-footer">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">REST API</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Laureano Enrique — Diseñado con <i class="fas fa-heart" style="color: var(--accent);"></i></p>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
