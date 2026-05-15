@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const heroStats = [
   { value: '24', label: 'years old, based in Buenos Aires' },
-  { value: 'Systems', label: 'engineering student at UTN-FRBA' },
+  { value: '6th year', label: 'Systems Engineering at UTN-FRBA' },
   { value: 'Fintech', label: 'and software projects are my focus' },
 ];
 
@@ -130,7 +130,7 @@ const architectureGroups = [
 const technologyGroups = [
   {
     title: 'Frontend and web',
-    items: ['Astro', 'React', 'Next.js', 'Tailwind CSS', 'HTMX', 'Jinja2', 'Thymeleaf', 'HTML', 'CSS', 'TypeScript'],
+    items: ['Astro', 'React', 'Next.js', 'Tailwind CSS', 'HTMX', 'Jinja2', 'Thymeleaf', 'HTML', 'CSS'],
   },
   {
     title: 'Backend and APIs',
@@ -138,15 +138,15 @@ const technologyGroups = [
   },
   {
     title: 'Data and finance',
-    items: ['Python', 'pandas', 'numpy', 'yfinance', 'pandas-ta', 'plotly', 'dash', 'scipy', 'statsmodels', 'schedule', 'Requests', 'Beautiful Soup 4', 'lxml'],
+    items: ['Python', 'pandas', 'numpy', 'yfinance', 'pandas-ta', 'plotly', 'dash', 'scipy', 'statsmodels',  'Beautiful Soup 4', 'lxml'],
   },
   {
     title: 'Databases and infra',
-    items: ['SQLite', 'PostgreSQL', 'MySQL', 'SQL Server', 'Supabase', 'Stripe', 'Clerk', 'Docker', 'Docker Compose', 'Nginx'],
+    items: ['SQLite', 'PostgreSQL', 'MySQL', 'SQL Server', 'Nginx'],
   },
   {
     title: 'Systems and tooling',
-    items: ['C', 'Java 17', 'Bash', 'GCC', 'GNU Make', 'pthread', 'readline', 'Sockets POSIX', 'so-commons-library', 'Linux'],
+    items: ['C', 'Java 17', 'Bash', 'Mac OS', 'Windows', 'Linux'],
   },
 ];
 
@@ -176,11 +176,11 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
           <p class="fade-in text-sm uppercase tracking-[0.35em] text-zinc-500">Portfolio</p>
 
           <h1 class="fade-in mt-6 max-w-4xl font-display text-5xl font-medium leading-[0.95] text-zinc-100 sm:text-6xl lg:text-7xl">
-            Hi, I’m Lauri. I build software, study systems engineering and keep a close eye on markets.
+            Laureano Enrique
           </h1>
 
           <p class="fade-in mt-6 max-w-2xl text-lg leading-8 text-zinc-400 sm:text-xl">
-            I’m 24, based in Buenos Aires and in my last year at UTN-FRBA. I like practical products, automation, fintech tools and clean interfaces that get out of the way.
+            Developer + Trader + Software Engineer Student
           </p>
 
           <div class="fade-in mt-8 flex flex-wrap gap-4 text-sm text-zinc-300">
@@ -202,9 +202,10 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
         <aside class="relative z-10 self-stretch">
           <div class="fade-in soft-card rounded-[1.5rem] p-6 lg:p-7">
             <p class="text-xs uppercase tracking-[0.3em] text-zinc-500">About me</p>
-            <p class="mt-5 text-base leading-7 text-zinc-200">
-              I like building things that are useful before they are impressive: small web apps, data tools, automation scripts and systems projects.
-            </p>
+          
+            <p class="mt-4 text-sm leading-7 text-zinc-400">
+I love mixing finance with software development and simply trying out projects; nowadays, with the use of AI, I can test thousands of technologies and attempt things that used to take me months. I'm passionate about "risking it all." I'm also venturing into automating archaic processes with AI to try to solve problems for people. I'm passionate about what I do and I love learning all the time — I'd say that's my greatest virtue above all others.
+Is it the best CV? I don't know, but it perfectly describes what I love, and that's what matters.            </p>
 
             <dl class="mt-8 space-y-4 border-t border-white/8 pt-6 text-sm text-zinc-400">
               <div class="flex justify-between gap-6">
@@ -221,7 +222,19 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
               </div>
               <div class="flex justify-between gap-6">
                 <dt>Focus</dt>
-                <dd class="text-zinc-200">Systems + fintech + automation</dd>
+                <dd class="text-zinc-200">Trading + Software automation + IA automation</dd>
+              </div>
+              <div class="flex justify-between gap-6">
+                <dt>Education</dt>
+                <dd class="text-zinc-200">6th year, Systems Engineering — UTN FRBA</dd>
+              </div>
+                 <div class="flex justify-between gap-6">
+                <dt>Languages</dt>
+                <dd class="text-zinc-200">Spanish (Native), English (Fluent)</dd>
+              </div>
+              <div class="flex justify-between gap-6">
+                <dt>High school</dt>
+                <dd class="text-zinc-200">Colegio Nacional Mariano Moreno (Economics orientation)</dd>
               </div>
               <div class="flex justify-between gap-6">
                 <dt>Email</dt>
@@ -254,11 +267,11 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
       <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p class="text-xs uppercase tracking-[0.35em] text-zinc-500">Projects</p>
-          <h2 class="mt-4 font-display text-3xl font-medium text-zinc-100 sm:text-4xl">Selected work from the project archive.</h2>
+          <h2 class="mt-4 font-display text-3xl font-medium text-zinc-100 sm:text-4xl">My Projects.</h2>
         </div>
-        <p class="max-w-2xl text-sm leading-7 text-zinc-500">
-          The cards below reflect every markdown project under all_projects, summarized in English and grouped by the kind of problem each one solves.
-        </p>
+        <p class="mt-2 max-w-2xl text-sm leading-6 text-zinc-500 italic">
+These days, how many lines of code are written by hand? Very few, to be honest, with the use of AI. That's why, in this sense, I highlight my virtue of understanding software architecture — knowing what a thread is, APIs, workers, databases, lightweight clients, sockets, cookies, requests, CDNs, brokers, cache, and so many more that I'm forgetting        </p>
+    
       </div>
 
       <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -317,7 +330,7 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
 
         <div class="grid gap-4 md:grid-cols-2">
           {architectureGroups.map((group) => (
-            <div class="fade-in soft-card rounded-[1.5rem] p-6">
+            <div class="fade-in">
               <h3 class="font-display text-xl text-zinc-100">{group.title}</h3>
               <ul class="mt-4 space-y-3 text-sm leading-7 text-zinc-400">
                 {group.items.map((item, index) => (
@@ -334,7 +347,7 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
 
       <div class="mt-8 grid gap-6 lg:grid-cols-2">
         {technologyGroups.map((group) => (
-          <div class="fade-in soft-card rounded-[1.5rem] p-6">
+          <div class="fade-in">
             <h3 class="font-display text-xl text-zinc-100">{group.title}</h3>
             <div class="mt-4 flex flex-wrap gap-2">
               {group.items.map((item, index) => (
@@ -346,7 +359,7 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
           </div>
         ))}
 
-        <div class="fade-in soft-card rounded-[1.5rem] p-6">
+        <div class="fade-in">
           <h3 class="font-display text-xl text-zinc-100">Languages</h3>
           <div class="mt-4 flex flex-wrap gap-2">
             {languageList.map((item, index) => (
@@ -355,9 +368,31 @@ const languageList = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL',
               </span>
             ))}
           </div>
-          <p class="mt-5 text-sm leading-7 text-zinc-500">
-            Python, Java, C, TypeScript, HTML, CSS, SQL and Bash cover the current portfolio.
-          </p>
+        </div>
+        <div class="fade-in">
+          <h3 class="font-display text-xl text-zinc-100">Finance & Markets</h3>
+          <ul class="mt-4 space-y-3 text-sm leading-7 text-zinc-400">
+            <li>
+              <strong>Instruments:</strong> Equities (stocks), fixed income (bonds), derivatives (options, futures)
+            </li>
+            <li>
+              <strong>Market analysis:</strong> Fundamental analysis, technical analysis, chart patterns
+            </li>
+            <li>
+              <strong>Trading & ops:</strong> Options trading (ROFEX), implied volatility (IV), Greeks (Delta, Gamma, Vega, Theta)
+            </li>
+            <li>
+              <strong>Argentinian bonds:</strong> Valuation, duration, IRR, spreads, sovereign risk analysis
+            </li>
+            <li>
+              <strong>Tools:</strong> Finviz, TradingView, Python for quantitative analysis (pandas, numpy, plotly)
+            </li>
+            <li>
+              <strong>Experience:</strong> 18+ months trading options and continuous market analysis
+            </li>
+            <li>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
