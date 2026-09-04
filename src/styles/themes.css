@@ -1,0 +1,81 @@
+/* Paletas claras para las variantes de rediseno (/v1 .. /v5).
+   Las directivas @tailwind no van aca: la integracion @astrojs/tailwind
+   ya las inyecta en todas las paginas. Repetirlas duplica el reset base.
+   Los colores se guardan como triples RGB para que funcione <alpha-value>. */
+
+:root,
+[data-palette='papel'] {
+  --page: 251 250 247;
+  --panel: 255 255 255;
+  --hairline: 227 224 216;
+  --fg: 26 26 24;
+  --fg-soft: 90 87 80;
+  --brand: 29 78 216;
+  --on-brand: 255 255 255;
+}
+
+[data-palette='niebla'] {
+  --page: 242 244 245;
+  --panel: 255 255 255;
+  --hairline: 220 225 227;
+  --fg: 22 25 26;
+  --fg-soft: 82 96 94;
+  --brand: 15 118 110;
+  --on-brand: 255 255 255;
+}
+
+[data-palette='lino'] {
+  --page: 250 249 251;
+  --panel: 255 255 255;
+  --hairline: 230 226 236;
+  --fg: 27 23 32;
+  --fg-soft: 88 81 106;
+  --brand: 91 33 182;
+  --on-brand: 255 255 255;
+}
+
+[data-palette='arcilla'] {
+  --page: 250 244 236;
+  --panel: 255 253 249;
+  --hairline: 232 220 203;
+  --fg: 35 24 15;
+  --fg-soft: 107 87 65;
+  --brand: 166 61 34;
+  --on-brand: 255 255 255;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(var(--page));
+  color: rgb(var(--fg));
+}
+
+::selection {
+  background: rgb(var(--brand) / 0.16);
+  color: rgb(var(--fg));
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--brand));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

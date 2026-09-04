@@ -8,6 +8,14 @@ export default {
         line: 'rgba(255,255,255,0.08)',
         accent: '#7dd3fc',
         accentSoft: '#0f172a',
+        // Tokens de las variantes claras: apuntan a las variables de themes.css.
+        page: 'rgb(var(--page) / <alpha-value>)',
+        panel: 'rgb(var(--panel) / <alpha-value>)',
+        hairline: 'rgb(var(--hairline) / <alpha-value>)',
+        fg: 'rgb(var(--fg) / <alpha-value>)',
+        'fg-soft': 'rgb(var(--fg-soft) / <alpha-value>)',
+        brand: 'rgb(var(--brand) / <alpha-value>)',
+        'on-brand': 'rgb(var(--on-brand) / <alpha-value>)',
       },
       boxShadow: {
         glow: '0 0 0 1px rgba(125, 211, 252, 0.16), 0 24px 80px rgba(2, 6, 23, 0.45)',
