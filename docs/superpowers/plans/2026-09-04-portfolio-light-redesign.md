@@ -281,7 +281,7 @@ git commit -m "feat: paletas claras como variables CSS y tokens Tailwind"
 
 **Interfaces:**
 - Consumes: `src/styles/themes.css` (Task 2).
-- Produces: `VariantLayout` con props `{ title: string; description: string; palette: 'papel'|'niebla'|'lino'|'arcilla'; fonts: string; current: 1|2|3|4|5 }`. `fonts` es una URL completa de Google Fonts que el layout inserta en el `<head>`. Todas las variantes usan este layout.
+- Produces: `VariantLayout` con props `{ title: string; description: string; palette: 'papel'|'niebla'|'lino'|'arcilla'; fonts: string; current: number }`. `fonts` es una URL completa de Google Fonts que el layout inserta en el `<head>`. Todas las variantes usan este layout.
 
 - [ ] **Step 1: Escribir la verificación que falla**
 
