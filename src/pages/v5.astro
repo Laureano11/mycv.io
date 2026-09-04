@@ -79,6 +79,9 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
                 <dt class="text-base leading-6 text-fg-soft">{fact.label}</dt>
                 <dd class="mt-1 break-words text-[1.0625rem] leading-7 text-fg">
                   {fact.href ? <a class="link" href={fact.href}>{fact.value}</a> : fact.value}
+                  {fact.note && (
+                    <span class="mt-1 block text-base leading-6 text-fg-soft">{fact.note}</span>
+                  )}
                 </dd>
               </div>
             ))

@@ -76,6 +76,9 @@ const nav = [
                 ) : (
                   fact.value
                 )}
+                {fact.note && (
+                  <span class="mt-1 block text-base leading-6 text-fg-soft">{fact.note}</span>
+                )}
               </dd>
             </div>
           ))

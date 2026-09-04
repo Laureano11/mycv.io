@@ -13,7 +13,8 @@ export type Group = { title: string; items: string[] };
  *  si falta, la variante la muestra como chip de texto. */
 export type Tech = { name: string; logo?: string };
 export type TechGroup = { title: string; items: Tech[] };
-export type Fact = { label: string; value: string; href?: string };
+/** `note` es una segunda linea dentro de la misma tarjeta de dato. */
+export type Fact = { label: string; value: string; href?: string; note?: string };
 export type FinanceItem = { label: string; detail: string };
 export type HeroStat = { value: string; label: string };
 
@@ -49,9 +50,12 @@ export const facts: Fact[] = [
   { label: 'Age', value: '24' },
   { label: 'City', value: 'Ciudad Autonoma de Buenos Aires, Argentina' },
   { label: 'Focus', value: 'Trading + Software automation + IA automation' },
-  { label: 'Education', value: '6th year, Systems Engineering — UTN FRBA' },
+  {
+    label: 'Education',
+    value: '6th year, Systems Engineering — UTN FRBA',
+    note: 'Colegio Nacional Mariano Moreno (Economics orientation)',
+  },
   { label: 'Languages', value: 'Spanish (Native), English (Fluent)' },
-  { label: 'High school', value: 'Colegio Nacional Mariano Moreno (Economics orientation)' },
 ];
 
 export const projects: Project[] = [
