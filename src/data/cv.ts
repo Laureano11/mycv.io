@@ -9,6 +9,10 @@ export type Project = {
 };
 
 export type Group = { title: string; items: string[] };
+/** Una tecnologia del stack. `logo` es el nombre de archivo en /logos/;
+ *  si falta, la variante la muestra como chip de texto. */
+export type Tech = { name: string; logo?: string };
+export type TechGroup = { title: string; items: Tech[] };
 export type Fact = { label: string; value: string; href?: string };
 export type FinanceItem = { label: string; detail: string };
 export type HeroStat = { value: string; label: string };
@@ -161,55 +165,69 @@ export const architectureGroups: Group[] = [
   },
 ];
 
-export const technologyGroups: Group[] = [
+export const techGroups: TechGroup[] = [
   {
-    title: 'Frontend and web',
-    items: ['Astro', 'React', 'Next.js', 'Tailwind CSS', 'HTMX', 'Jinja2', 'Thymeleaf', 'HTML', 'CSS'],
-  },
-  {
-    title: 'Backend and APIs',
+    title: 'Languages',
     items: [
-      'FastAPI',
-      'Django',
-      'Spring Boot',
-      'Spring MVC',
-      'Spring WebFlux',
-      'Spring Security',
-      'REST APIs',
-      'SQLModel',
-      'JPA',
-      'Hibernate',
-      'JWT',
-      'Sessions',
+      { name: 'Python' },
+      { name: 'Java' },
+      { name: 'C' },
+      { name: 'TypeScript' },
+      { name: 'HTML' },
+      { name: 'CSS' },
+      { name: 'SQL' },
+      { name: 'Bash' },
     ],
   },
   {
-    title: 'Data and finance',
+    title: 'Frameworks and libraries',
     items: [
-      'Python',
-      'pandas',
-      'numpy',
-      'yfinance',
-      'pandas-ta',
-      'plotly',
-      'dash',
-      'scipy',
-      'statsmodels',
-      'Beautiful Soup 4',
-      'lxml',
+      { name: 'Astro' },
+      { name: 'React' },
+      { name: 'Next.js' },
+      { name: 'Tailwind CSS' },
+      { name: 'HTMX' },
+      { name: 'Jinja2' },
+      { name: 'Thymeleaf' },
+      { name: 'FastAPI' },
+      { name: 'Django' },
+      { name: 'Spring Boot' },
+      { name: 'Spring MVC' },
+      { name: 'Spring WebFlux' },
+      { name: 'Spring Security' },
+      { name: 'Hibernate' },
+      { name: 'JPA' },
+      { name: 'SQLModel' },
+      { name: 'REST APIs' },
+      { name: 'JWT' },
+      { name: 'Sessions' },
+      { name: 'pandas' },
+      { name: 'numpy' },
+      { name: 'scipy' },
+      { name: 'statsmodels' },
+      { name: 'plotly' },
+      { name: 'dash' },
+      { name: 'yfinance' },
+      { name: 'pandas-ta' },
+      { name: 'Beautiful Soup 4' },
+      { name: 'lxml' },
     ],
   },
   {
-    title: 'Databases and infra',
-    items: ['SQLite', 'PostgreSQL', 'MySQL', 'SQL Server', 'Nginx'],
-  },
-  {
-    title: 'Systems and tooling',
-    items: ['C', 'Java 17', 'Bash', 'Mac OS', 'Windows', 'Linux', 'Git'],
+    title: 'Systems, data and tooling',
+    items: [
+      { name: 'SQLite' },
+      { name: 'PostgreSQL' },
+      { name: 'MySQL' },
+      { name: 'SQL Server' },
+      { name: 'Nginx' },
+      { name: 'Linux' },
+      { name: 'Mac OS' },
+      { name: 'Windows' },
+      { name: 'Git' },
+    ],
   },
 ];
-
-export const languages: string[] = ['Python', 'Java', 'C', 'TypeScript', 'HTML', 'CSS', 'SQL', 'Bash'];
 
 export const finance: FinanceItem[] = [
   {
