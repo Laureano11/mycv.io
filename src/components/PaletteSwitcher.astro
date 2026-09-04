@@ -1,0 +1,78 @@
+---
+// Control flotante solo para las rutas de variantes (/v1 .. /v5).
+// Se elimina cuando se porte la variante ganadora a index.astro.
+type Props = { current: number };
+const { current } = Astro.props;
+
+const palettes = [
+  { id: 'papel', label: 'Papel' },
+  { id: 'niebla', label: 'Niebla' },
+  { id: 'lino', label: 'Lino' },
+  { id: 'arcilla', label: 'Arcilla' },
+];
+const variants = [1, 2, 3, 4, 5];
+---
+
+<div
+  class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 rounded-xl border border-hairline bg-panel/95 p-3 shadow-lg backdrop-blur"
+>
+  <div class="flex items-center gap-1">
+    <span class="mr-1 text-xs uppercase tracking-widest text-fg-soft">Vista</span>
+    {
+      variants.map((n) => (
+        <a
+          href={`/v${n}`}
+          aria-current={n === current ? 'page' : undefined}
+          class:list={[
+            'rounded px-2 py-1 text-sm transition',
+            n === current
+              ? 'bg-brand text-on-brand'
+              : 'text-fg-soft hover:bg-hairline/60 hover:text-fg',
+          ]}
+        >
+          v{n}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="flex items-center gap-1">
+    <span class="mr-1 text-xs uppercase tracking-widest text-fg-soft">Tema</span>
+    {
+      palettes.map((p) => (
+        <button
+          type="button"
+          data-set-palette={p.id}
+          class="rounded px-2 py-1 text-sm text-fg-soft transition hover:bg-hairline/60 hover:text-fg aria-[current=true]:bg-brand aria-[current=true]:text-on-brand"
+        >
+          {p.label}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const KEY = 'mycv-palette';
+
+  const mark = (id: string) => {
+    document.documentElement.dataset.palette = id;
+    document.querySelectorAll<HTMLButtonElement>('[data-set-palette]').forEach((b) => {
+      b.setAttribute('aria-current', String(b.dataset.setPalette === id));
+    });
+  };
+
+  mark(document.documentElement.dataset.palette || 'papel');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-set-palette]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.setPalette!;
+      try {
+        localStorage.setItem(KEY, id);
+      } catch {
+        /* modo privado: la eleccion no persiste, pero igual se aplica */
+      }
+      mark(id);
+    });
+  });
+</script>

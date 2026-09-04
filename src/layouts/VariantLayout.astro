@@ -1,0 +1,41 @@
+---
+// Layout de las variantes claras. No importa global.css a proposito:
+// ese archivo pinta el fondo oscuro del sitio actual.
+import '../styles/themes.css';
+import PaletteSwitcher from '../components/PaletteSwitcher.astro';
+
+type Props = {
+  title: string;
+  description: string;
+  palette: 'papel' | 'niebla' | 'lino' | 'arcilla';
+  fonts: string;
+  current: number;
+};
+
+const { title, description, palette, fonts, current } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-palette={palette}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={fonts} rel="stylesheet" />
+    <title>{title}</title>
+    <script is:inline define:vars={{ palette }}>
+      // Corre antes de pintar para evitar el destello de la paleta equivocada.
+      try {
+        document.documentElement.dataset.palette = localStorage.getItem('mycv-palette') || palette;
+      } catch (e) {
+        document.documentElement.dataset.palette = palette;
+      }
+    </script>
+  </head>
+  <body class="bg-page text-fg antialiased">
+    <slot />
+    <PaletteSwitcher current={current} />
+  </body>
+</html>
