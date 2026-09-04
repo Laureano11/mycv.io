@@ -86,7 +86,7 @@ const nav = [
         class="cta mt-7 inline-flex items-center justify-center rounded-lg bg-brand px-4 py-2.5 text-base font-medium text-on-brand"
         href={profile.emailHref}
       >
-        Get in touch
+        {profile.contactCta}
       </a>
     </header>
 
@@ -241,16 +241,24 @@ const nav = [
         </h2>
         <p class="mt-4 max-w-[68ch] text-base leading-[1.7] text-fg-soft">{profile.contactNote}</p>
         <p class="mt-5 flex flex-col gap-2.5 text-base sm:flex-row sm:gap-8">
-          <a class="link" href={profile.emailHref}>{profile.email}</a>
-          <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+          <a class="cta inline-flex items-center justify-center bg-brand font-medium text-on-brand rounded-lg px-5 py-3 text-base" href={profile.emailHref}>
+            {profile.contactCta}
+          </a>
         </p>
       </section>
 
       <footer
-        class="mt-12 flex flex-col gap-1.5 border-t border-hairline pt-7 text-sm text-fg-soft sm:flex-row sm:justify-between"
+        class="mt-12 flex flex-col gap-6 border-t border-hairline pt-7 text-sm text-fg-soft sm:flex-row sm:justify-between"
       >
-        <p>{profile.footerLeft}</p>
-        <p>{profile.footerRight}</p>
+        <div class="flex flex-col gap-1.5">
+          <p>{profile.footerLeft}</p>
+          <p>{profile.footerRight}</p>
+        </div>
+        <div class="flex flex-col gap-1.5 sm:items-end">
+          <a class="link" href={profile.emailHref}>{profile.email}</a>
+          <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+          <a class="link" href={profile.linkedin} target="_blank" rel="noreferrer">{profile.linkedinLabel}</a>
+        </div>
       </footer>
     </main>
   </div>

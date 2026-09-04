@@ -24,6 +24,9 @@ export const profile = {
   emailHref: 'mailto:Laureanoenrique29@gmail.com',
   phone: '2325420927',
   phoneHref: 'tel:+542325420927',
+  linkedin: 'https://www.linkedin.com/in/laureano-enrique/',
+  linkedinLabel: 'LinkedIn',
+  contactCta: 'Contact me',
   bio: `I love mixing finance with software development and simply trying out projects; nowadays, with the use of AI, I can test thousands of technologies and attempt things that used to take me months. I'm passionate about "risking it all." I'm also venturing into automating archaic processes with AI to try to solve problems for people. I'm passionate about what I do and I love learning all the time — I'd say that's my greatest virtue above all others.
 Is it the best CV? I don't know, but it perfectly describes what I love, and that's what matters.`,
   projectsNote: `These days, how many lines of code are written by hand? Very few, to be honest, with the use of AI. That's why, in this sense, I highlight my virtue of understanding software architecture — knowing what a thread is, APIs, workers, databases, lightweight clients, sockets, cookies, requests, CDNs, brokers, cache, and so many more that I'm forgetting`,
@@ -49,8 +52,6 @@ export const facts: Fact[] = [
   { label: 'Education', value: '6th year, Systems Engineering — UTN FRBA' },
   { label: 'Languages', value: 'Spanish (Native), English (Fluent)' },
   { label: 'High school', value: 'Colegio Nacional Mariano Moreno (Economics orientation)' },
-  { label: 'Email', value: 'Laureanoenrique29@gmail.com', href: 'mailto:Laureanoenrique29@gmail.com' },
-  { label: 'Phone', value: '2325420927', href: 'tel:+542325420927' },
 ];
 
 export const projects: Project[] = [

@@ -228,22 +228,28 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
         <p class="mt-4 max-w-[62ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
           {profile.contactNote}
         </p>
-        <div class="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <div class="mt-7">
           <a
-            class="cta max-w-full break-all rounded-full bg-brand px-5 py-2.5 text-center text-base font-medium text-on-brand"
+            class="cta inline-flex items-center justify-center bg-brand font-medium text-on-brand rounded-full px-6 py-3 text-[1.0625rem]"
             href={profile.emailHref}
           >
-            {profile.email}
+            {profile.contactCta}
           </a>
-          <a class="link text-[1.0625rem]" href={profile.phoneHref}>{profile.phone}</a>
         </div>
       </section>
 
       <footer
-        class="mt-12 flex flex-col gap-1.5 border-t border-hairline py-8 text-sm text-fg-soft sm:flex-row sm:justify-between"
+        class="mt-12 flex flex-col gap-6 border-t border-hairline py-8 text-sm text-fg-soft sm:flex-row sm:justify-between"
       >
-        <p>{profile.footerLeft}</p>
-        <p>{profile.footerRight}</p>
+        <div class="flex flex-col gap-1.5">
+          <p>{profile.footerLeft}</p>
+          <p>{profile.footerRight}</p>
+        </div>
+        <div class="flex flex-col gap-1.5 sm:items-end">
+          <a class="link" href={profile.emailHref}>{profile.email}</a>
+          <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+          <a class="link" href={profile.linkedin} target="_blank" rel="noreferrer">{profile.linkedinLabel}</a>
+        </div>
       </footer>
     </main>
   </div>

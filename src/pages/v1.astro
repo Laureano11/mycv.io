@@ -218,18 +218,26 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
           <p class="mt-5 max-w-[62ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
             {profile.contactNote}
           </p>
-          <p class="mt-7 flex flex-col gap-3 text-[1.0625rem] sm:flex-row sm:gap-8">
-            <a class="link" href={profile.emailHref}>{profile.email}</a>
-            <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+          <p class="mt-8">
+            <a class="cta inline-flex items-center justify-center bg-brand font-medium text-on-brand rounded-lg px-5 py-3 text-[1.0625rem]" href={profile.emailHref}>
+              {profile.contactCta}
+            </a>
           </p>
         </section>
       </main>
 
       <footer
-        class="mt-16 flex flex-col gap-1.5 border-t border-hairline py-9 text-[0.95rem] text-fg-soft sm:flex-row sm:justify-between"
+        class="mt-16 flex flex-col gap-6 border-t border-hairline py-9 text-[0.95rem] text-fg-soft sm:flex-row sm:justify-between"
       >
-        <p>{profile.footerLeft}</p>
-        <p>{profile.footerRight}</p>
+        <div class="flex flex-col gap-1.5">
+          <p>{profile.footerLeft}</p>
+          <p>{profile.footerRight}</p>
+        </div>
+        <div class="flex flex-col gap-1.5 sm:items-end">
+          <a class="link" href={profile.emailHref}>{profile.email}</a>
+          <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+          <a class="link" href={profile.linkedin} target="_blank" rel="noreferrer">{profile.linkedinLabel}</a>
+        </div>
       </footer>
     </div>
   </div>
@@ -265,6 +273,14 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
 
   .link:hover {
     text-decoration-thickness: 2px;
+  }
+
+  .cta {
+    transition: background-color 150ms ease;
+  }
+
+  .cta:hover {
+    background: rgb(var(--brand) / 0.88);
   }
 
   .skip {
