@@ -20,7 +20,6 @@ export type HeroStat = { value: string; label: string };
 export const profile = {
   name: 'Laureano Enrique',
   role: 'Developer + Trader + Software Engineer Student',
-  location: 'Ciudad Autonoma de Buenos Aires, Argentina',
   email: 'Laureanoenrique29@gmail.com',
   emailHref: 'mailto:Laureanoenrique29@gmail.com',
   phone: '2325420927',

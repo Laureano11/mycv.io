@@ -15,6 +15,7 @@
 Estas reglas aplican a **todas** las tareas. Los requisitos de cada tarea las incluyen implícitamente.
 
 - **No se modifica** `src/pages/index.astro`, `src/layouts/BaseLayout.astro` ni `src/styles/global.css`. La ruta `/` debe seguir mostrando el sitio oscuro actual sin cambios.
+- **No se usa `@vercel/analytics`.** El paquete NO esta instalado; `BaseLayout.astro` lo importa sin usarlo y por eso el build sobrevive. Usarlo de verdad rompe la compilacion.
 - **No se agregan dependencias.** No ejecutar `npm install`. `node_modules` está desincronizado con `package.json` (este declara `astro ^6.3.8`, está instalado `astro 5.18.1`); un install limpio rompería el proyecto. Usar lo instalado.
 - **No se modifican los tokens Tailwind existentes** `ink`, `surface`, `line`, `accent`, `accentSoft`: `BaseLayout.astro` depende de ellos.
 - **No se cambia el texto del CV.** Mismo contenido que hoy; cambia la forma.
@@ -45,7 +46,7 @@ Estas reglas aplican a **todas** las tareas. Los requisitos de cada tarea las in
 
 ```bash
 node --experimental-strip-types -e "import('./src/data/cv.ts').then(m=>{
-  const need=['profile','heroStats','facts','projects','architectureGroups','technologyGroups','languages','finance'];
+  const need=['profile','heroStats','facts','projects','architectureGroups','techGroups','finance'];
   const missing=need.filter(k=>!(k in m));
   if(missing.length) throw new Error('faltan: '+missing);
   if(m.projects.length!==9) throw new Error('projects debe tener 9, tiene '+m.projects.length);
@@ -106,8 +107,9 @@ export const facts: Fact[] = [
 
 export const projects: Project[] = [ /* los 9 de index.astro:10-94, campos idénticos */ ];
 export const architectureGroups: Group[] = [ /* los 2 de index.astro:105-127 */ ];
-export const technologyGroups: Group[] = [ /* los 5 de index.astro:129-149 */ ];
-export const languages: string[] = [ /* index.astro:151 */ ];
+// technologyGroups (5 grupos) + languages se reagrupan en techGroups (3 grupos),
+// con { name, logo? } por tecnologia. Ver la seccion "Stack con logos" del spec.
+export const techGroups: TechGroup[] = [ /* Languages, Frameworks and libraries, Systems data and tooling */ ];
 
 // La sección Finance & Markets está hardcodeada como HTML en index.astro:377-399.
 // Se extrae aquí como datos estructurados.
@@ -311,7 +313,7 @@ const variants = [1, 2, 3, 4, 5];
 
 <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 rounded-xl border border-hairline bg-panel/95 p-3 text-sm shadow-lg backdrop-blur">
   <div class="flex items-center gap-1">
-    <span class="mr-1 text-xs uppercase tracking-widest text-fg-soft">Vista</span>
+    <span class="mr-1 text-xs text-fg-soft">Vista</span>
     {variants.map((n) => (
       <a
         href={`/v${n}`}
@@ -324,7 +326,7 @@ const variants = [1, 2, 3, 4, 5];
     ))}
   </div>
   <div class="flex items-center gap-1">
-    <span class="mr-1 text-xs uppercase tracking-widest text-fg-soft">Tema</span>
+    <span class="mr-1 text-xs text-fg-soft">Tema</span>
     {palettes.map((p) => (
       <button
         type="button"
@@ -362,7 +364,6 @@ El script inline del `<head>` corre antes de pintar para que no haya destello de
 ---
 import '../styles/themes.css';
 import PaletteSwitcher from '../components/PaletteSwitcher.astro';
-import Analytics from '@vercel/analytics/astro';
 
 type Props = {
   title: string;
@@ -394,10 +395,9 @@ const { title, description, palette, fonts, current } = Astro.props;
       }
     </script>
   </head>
-  <body class="bg-page text-fg antialiased">
+  <body class="bg-page pb-28 text-fg antialiased sm:pb-24">
     <slot />
     <PaletteSwitcher current={current} />
-    <Analytics />
   </body>
 </html>
 ```
@@ -488,7 +488,7 @@ Chips de la sección de tecnologías — mismo contenedor, con logo opcional. El
 `specialTags` — aquí sí va el acento, porque distinguen algo real:
 
 ```astro
-<span class="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-brand">{tag}</span>
+<span class="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-sm font-medium text-brand">{tag}</span>
 ```
 
 - [ ] **Step 4: Correr la verificación del Step 1**

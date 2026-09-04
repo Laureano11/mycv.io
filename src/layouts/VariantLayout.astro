@@ -34,7 +34,9 @@ const { title, description, palette, fonts, current } = Astro.props;
       }
     </script>
   </head>
-  <body class="bg-page text-fg antialiased">
+  <!-- pb-28: el PaletteSwitcher es fixed abajo a la derecha y taparia el pie en movil.
+       Se resuelve aca una vez para las 5 variantes, no en cada una. -->
+  <body class="bg-page pb-28 text-fg antialiased sm:pb-24">
     <slot />
     <PaletteSwitcher current={current} />
   </body>

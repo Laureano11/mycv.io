@@ -1,0 +1,341 @@
+---
+// v5 — Timeline. Los 9 proyectos se leen como hitos sobre una regla vertical
+// continua; el resto de las secciones va en una columna normal.
+// La linea es un recurso de ritmo de lectura, NO una cronologia:
+// cv.ts no tiene fechas y el orden no es temporal, asi que no se numeran
+// ni se etiquetan los hitos con anios.
+import VariantLayout from '../layouts/VariantLayout.astro';
+import {
+  profile,
+  heroStats,
+  facts,
+  projects,
+  architectureGroups,
+  techGroups,
+  finance,
+} from '../data/cv.ts';
+
+const fonts =
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap';
+
+const [bioMain, bioClosing] = profile.bio.split('\n');
+---
+
+<VariantLayout
+  title={`${profile.name} — Portfolio`}
+  description={profile.role}
+  palette="papel"
+  fonts={fonts}
+  current={5}
+>
+  <div class="tlpage">
+    <a href="#projects" class="skip">Skip to projects</a>
+
+    <header class="sticky top-0 z-40 border-b border-hairline bg-page/90 backdrop-blur">
+      <div class="mx-auto flex max-w-3xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-5 py-4 sm:px-8">
+        <a href="#top" class="text-base font-semibold text-fg">{profile.name}</a>
+        <nav class="flex flex-wrap gap-x-5 gap-y-1 text-base text-fg-soft">
+          <a class="navlink" href="#projects">Projects</a>
+          <a class="navlink" href="#stack">Stack</a>
+          <a class="navlink" href="#markets">Markets</a>
+          <a class="navlink" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- pb generoso: el switcher flotante vive en la esquina inferior derecha. -->
+    <main id="top" class="mx-auto max-w-3xl px-5 sm:px-8">
+      <!-- Hero -->
+      <section class="pt-14 sm:pt-20">
+        <h1 class="text-[clamp(2.25rem,7vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.025em] text-fg">
+          {profile.name}
+        </h1>
+        <p class="mt-4 text-xl leading-8 text-fg-soft sm:text-2xl">{profile.role}</p>
+
+        <div class="mt-8 max-w-[68ch] space-y-5 text-[1.0625rem] leading-[1.75] text-fg">
+          <p>{bioMain}</p>
+          {bioClosing && <p class="text-fg-soft">{bioClosing}</p>}
+        </div>
+
+        <dl class="mt-10 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-3">
+          {
+            heroStats.map((stat) => (
+              <div class="bg-panel px-5 py-5">
+                <dt class="text-base leading-6 text-fg-soft">{stat.label}</dt>
+                <dd class="mt-1 text-xl font-semibold leading-7 text-fg">{stat.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <!-- Perfil -->
+      <section class="pt-16">
+        <h2 class="section-title">Profile</h2>
+        <dl class="mt-7 grid gap-x-10 gap-y-0 sm:grid-cols-2">
+          {
+            facts.map((fact) => (
+              <div class="border-b border-hairline py-3.5">
+                <dt class="text-base leading-6 text-fg-soft">{fact.label}</dt>
+                <dd class="mt-1 break-words text-[1.0625rem] leading-7 text-fg">
+                  {fact.href ? <a class="link" href={fact.href}>{fact.value}</a> : fact.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <!-- Proyectos: la linea de tiempo. Regla continua a la izquierda,
+           un marcador por proyecto y el contenido a la derecha. -->
+      <section id="projects" class="pt-16">
+        <h2 class="section-title">Projects</h2>
+        <p class="mt-5 max-w-[68ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
+          {profile.projectsNote}
+        </p>
+
+        <ol class="tl mt-10">
+          {
+            projects.map((project) => (
+              <li class="tl-item">
+                <p class="mono text-sm leading-6 text-fg-soft">{project.status}</p>
+                <h3 class="mt-1 text-2xl font-semibold leading-tight tracking-[-0.015em] text-fg">
+                  {project.name}
+                </h3>
+                <p class="mt-3 max-w-[68ch] text-[1.0625rem] leading-[1.7] text-fg">
+                  {project.summary}
+                </p>
+                <p class="mt-2.5 max-w-[68ch] text-[1.0625rem] leading-[1.7] text-fg-soft">
+                  {project.highlight}
+                </p>
+
+                <ul class="mt-5 flex flex-wrap gap-2">
+                  {project.stack.map((item) => (
+                    <li class="rounded-full border border-hairline bg-panel px-3 py-1 text-sm text-fg-soft">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {project.specialTags && (
+                  <ul class="mt-2.5 flex flex-wrap gap-2">
+                    {project.specialTags.map((tag) => (
+                      <li class="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-sm font-medium text-brand">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <p class="mt-5">
+                  <a class="link" href={project.repoUrl} target="_blank" rel="noreferrer">
+                    View repository
+                  </a>
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <!-- Arquitectura y tecnologias: columna normal, sin linea. -->
+      <section id="stack" class="pt-16">
+        <h2 class="section-title">Architecture</h2>
+        <p class="mt-5 max-w-[68ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
+          {profile.architectureHeading}
+        </p>
+
+        <div class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          {
+            architectureGroups.map((group) => (
+              <div class="rounded-xl border border-hairline bg-panel p-5">
+                <h3 class="text-lg font-semibold text-fg">{group.title}</h3>
+                <ul class="mt-3 space-y-2.5 text-[1.0625rem] leading-7 text-fg-soft">
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+
+        <h2 class="section-title mt-14">Technologies</h2>
+        <div class="mt-7 space-y-8">
+          {
+            techGroups.map((group) => (
+              <div>
+                <h3 class="text-lg font-semibold text-fg">{group.title}</h3>
+                <ul class="mt-3.5 flex flex-wrap gap-2">
+                  {group.items.map((tech) => (
+                    <li
+                      class:list={[
+                        'flex items-center gap-2 rounded-full border border-hairline bg-panel py-1 text-sm text-fg',
+                        tech.logo ? 'pl-1.5 pr-3.5' : 'px-3.5',
+                      ]}
+                    >
+                      {tech.logo && (
+                        <img
+                          src={`/logos/${tech.logo}`}
+                          alt=""
+                          width="20"
+                          height="20"
+                          loading="lazy"
+                          class="h-5 w-5 shrink-0 object-contain"
+                        />
+                      )}
+                      {tech.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Mercados -->
+      <section id="markets" class="pt-16">
+        <h2 class="section-title">Finance and markets</h2>
+        <dl class="mt-7 grid gap-x-10 sm:grid-cols-[11rem_1fr]">
+          {
+            finance.map((item) => (
+              <div class="contents">
+                <dt class="border-t border-hairline pt-4 text-base leading-7 text-fg-soft sm:pb-4">
+                  {item.label}
+                </dt>
+                <dd class="border-hairline pb-4 text-[1.0625rem] leading-7 text-fg sm:border-t sm:pt-4">
+                  {item.detail}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contact" class="pt-16">
+        <h2 class="max-w-[24ch] text-2xl font-semibold leading-tight tracking-[-0.015em] text-fg sm:text-3xl">
+          {profile.contactHeading}
+        </h2>
+        <p class="mt-5 max-w-[68ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
+          {profile.contactNote}
+        </p>
+        <p class="mt-7 flex flex-col gap-3 text-[1.0625rem] sm:flex-row sm:gap-8">
+          <a class="link break-words" href={profile.emailHref}>{profile.email}</a>
+          <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+        </p>
+      </section>
+
+      <footer
+        class="mt-16 flex flex-col gap-1.5 border-t border-hairline py-8 text-sm text-fg-soft sm:flex-row sm:justify-between"
+      >
+        <p>{profile.footerLeft}</p>
+        <p>{profile.footerRight}</p>
+      </footer>
+    </main>
+  </div>
+</VariantLayout>
+
+<style>
+  /* Tipografia local: Inter para todo, JetBrains Mono solo para las
+     etiquetas de hito de la linea de tiempo. */
+  .tlpage {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 500;
+  }
+
+  .tlpage :global(section) {
+    scroll-margin-top: 5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: rgb(var(--fg));
+  }
+
+  /* Linea de tiempo: la regla vive en el contenedor, asi termina exacta
+     en el ultimo hito y no cuelga por debajo. */
+  .tl {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tl::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 1px;
+    background: rgb(var(--hairline));
+  }
+
+  .tl-item {
+    position: relative;
+    padding-left: 1.75rem;
+    padding-bottom: 3rem;
+  }
+
+  .tl-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Marcador del hito, alineado con la primera linea del status. */
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 9999px;
+    border: 2px solid rgb(var(--brand));
+    background: rgb(var(--page));
+  }
+
+  @media (min-width: 640px) {
+    .tl-item {
+      padding-left: 2.5rem;
+    }
+  }
+
+  .link {
+    color: rgb(var(--brand));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .navlink:hover {
+    color: rgb(var(--fg));
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .skip:focus {
+    left: 1rem;
+    top: 1rem;
+    z-index: 60;
+    background: rgb(var(--panel));
+    color: rgb(var(--fg));
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+  }
+</style>

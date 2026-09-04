@@ -1,0 +1,357 @@
+---
+// v4 — Calido personal. Paleta arcilla, Newsreader para la voz, Inter para el resto.
+//
+// Decision de forma: la pagina tiene UN solo dispositivo estructural, un riel de
+// metadatos a la izquierda alineado a la derecha contra la columna de lectura.
+// Todo lo que es etiqueta (nombre de seccion, status de proyecto, label de dato)
+// vive en el riel, chico y callado; todo lo que es voz (nombre, bio, proyectos,
+// contacto) vive en la medida de lectura, grande y en serif.
+// Los proyectos son parrafos con titulo corrido, no tarjetas: se separan por aire.
+import VariantLayout from '../layouts/VariantLayout.astro';
+import {
+  profile,
+  heroStats,
+  facts,
+  projects,
+  architectureGroups,
+  techGroups,
+  finance,
+} from '../data/cv.ts';
+
+const fonts =
+  'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Inter:wght@400;500&display=swap';
+
+const [bioMain, bioClosing] = profile.bio.split('\n');
+---
+
+<VariantLayout
+  title={`${profile.name} — Portfolio`}
+  description={profile.role}
+  palette="arcilla"
+  fonts={fonts}
+  current={4}
+>
+  <div class="warm">
+    <a href="#projects" class="skip">Skip to projects</a>
+
+    <div class="mx-auto w-full max-w-[58rem] px-6 sm:px-10">
+      <header class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 py-8">
+        <a href="#top" class="display text-lg text-fg">{profile.name}</a>
+        <nav class="flex flex-wrap gap-x-7 gap-y-2 text-base text-fg-soft">
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#stack">Stack</a>
+          <a class="nav-link" href="#markets">Markets</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <!-- Apertura: el nombre presenta, la bio habla. La bio es el bloque mas
+             grande de la pagina a proposito; es lo que el autor pidio destacar. -->
+        <section class="pt-10 sm:pt-16">
+          <h1 class="display max-w-[16ch] text-[clamp(2.5rem,7vw,4rem)] font-normal leading-[1.02] text-fg">
+            {profile.name}
+          </h1>
+          <p class="mt-4 text-lg text-fg-soft">{profile.role}</p>
+
+          <div class="mt-12 sm:mt-16">
+            <p class="display max-w-[40ch] text-[clamp(1.4rem,3.2vw,1.95rem)] font-normal leading-[1.45] text-fg">
+              {bioMain}
+            </p>
+            {
+              bioClosing && (
+                <p class="display mt-8 max-w-[46ch] text-[1.25rem] leading-[1.6] text-fg-soft">
+                  {bioClosing}
+                </p>
+              )
+            }
+          </div>
+
+          <div class="mt-14 space-y-4">
+            {
+              heroStats.map((stat) => (
+                <div class="rail">
+                  <p class="rail-slot display text-xl leading-tight text-fg">{stat.value}</p>
+                  <p class="max-w-[52ch] text-[1.0625rem] leading-7 text-fg-soft">{stat.label}</p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Datos: sin bordes ni tarjetas, dos columnas de aire dentro de la medida. -->
+        <section class="pt-20 sm:pt-24">
+          <div class="rail">
+            <h2 class="rail-slot label-strong">Details</h2>
+            <dl class="grid max-w-[68ch] gap-x-10 gap-y-6 sm:grid-cols-2">
+              {
+                facts.map((fact) => (
+                  <div>
+                    <dt class="text-sm text-fg-soft">{fact.label}</dt>
+                    <dd class="mt-1 text-[1.0625rem] leading-7 text-fg">
+                      {fact.href ? (
+                        <a class="link" href={fact.href}>
+                          {fact.value}
+                        </a>
+                      ) : (
+                        fact.value
+                      )}
+                    </dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+        </section>
+
+        <!-- Proyectos: entrada corrida. El nombre abre el parrafo y el texto sigue
+             en la misma linea, como una nota comentada. Nada de bordes: el ritmo
+             vertical y el riel de status hacen todo el trabajo de separacion. -->
+        <section id="projects" class="pt-20 sm:pt-24">
+          <div class="rail">
+            <h2 class="rail-slot label-strong">Projects</h2>
+            <p class="max-w-[68ch] text-[1.0625rem] leading-[1.8] text-fg">
+              {profile.projectsNote}
+            </p>
+          </div>
+
+          <div class="mt-14 space-y-14 sm:mt-16 sm:space-y-16">
+            {
+              projects.map((project) => (
+                <article class="rail">
+                  <p class="rail-slot text-sm leading-6 text-fg-soft">{project.status}</p>
+
+                  <div class="max-w-[68ch]">
+                    <div class="run-in text-[1.0625rem] leading-[1.8] text-fg">
+                      <h3 class="display">{project.name}</h3>
+                      {project.summary}
+                    </div>
+                    <p class="mt-3 text-[1.0625rem] leading-[1.8] text-fg-soft">
+                      {project.highlight}
+                    </p>
+
+                    <ul class="mt-5 flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <li class="rounded-full border border-hairline bg-panel px-3 py-1 text-sm text-fg-soft">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {project.specialTags && (
+                      <ul class="mt-2 flex flex-wrap gap-2">
+                        {project.specialTags.map((tag) => (
+                          <li class="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-sm font-medium text-brand">
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <p class="mt-5 text-[1.0625rem]">
+                      <a class="link" href={project.repoUrl} target="_blank" rel="noreferrer">
+                        Read the code on GitHub
+                      </a>
+                    </p>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="stack" class="pt-20 sm:pt-24">
+          <div class="rail">
+            <h2 class="rail-slot label-strong">Stack</h2>
+            <p class="display max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.1rem)] font-normal leading-[1.25] text-fg">
+              {profile.architectureHeading}
+            </p>
+          </div>
+
+          <div class="mt-12 space-y-10">
+            {
+              architectureGroups.map((group) => (
+                <div class="rail">
+                  <h3 class="rail-slot text-sm leading-6 text-fg-soft">{group.title}</h3>
+                  <ul class="max-w-[64ch] space-y-2 text-[1.0625rem] leading-[1.7] text-fg">
+                    {group.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="mt-12 space-y-10">
+            {
+              techGroups.map((group) => (
+                <div class="rail">
+                  <h3 class="rail-slot text-sm leading-6 text-fg-soft">{group.title}</h3>
+                  <ul class="flex max-w-[68ch] flex-wrap gap-2">
+                    {group.items.map((tech) => (
+                      <li
+                        class:list={[
+                          'flex items-center gap-2 rounded-full border border-hairline bg-panel py-1 text-sm text-fg',
+                          tech.logo ? 'pl-1.5 pr-3.5' : 'px-3.5',
+                        ]}
+                      >
+                        {tech.logo && (
+                          <img
+                            src={`/logos/${tech.logo}`}
+                            alt=""
+                            width="20"
+                            height="20"
+                            loading="lazy"
+                            class="h-5 w-5 shrink-0 object-contain"
+                          />
+                        )}
+                        {tech.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="markets" class="pt-20 sm:pt-24">
+          <div class="rail">
+            <h2 class="rail-slot label-strong">Markets</h2>
+            <p class="display max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.1rem)] font-normal leading-[1.25] text-fg">
+              Finance and markets
+            </p>
+          </div>
+
+          <dl class="mt-12 space-y-6">
+            {
+              finance.map((item) => (
+                <div class="rail">
+                  <dt class="rail-slot text-sm leading-6 text-fg-soft">{item.label}</dt>
+                  <dd class="max-w-[64ch] text-[1.0625rem] leading-[1.7] text-fg">{item.detail}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        <section id="contact" class="pt-20 sm:pt-24">
+          <div class="rail">
+            <h2 class="rail-slot label-strong">Contact</h2>
+            <div>
+              <p class="display max-w-[22ch] text-[clamp(1.75rem,4vw,2.5rem)] font-normal leading-[1.2] text-fg">
+                {profile.contactHeading}
+              </p>
+              <p class="mt-6 max-w-[62ch] text-[1.0625rem] leading-[1.8] text-fg-soft">
+                {profile.contactNote}
+              </p>
+              <p class="mt-8 flex flex-col gap-3 text-[1.125rem] sm:flex-row sm:gap-10">
+                <a class="link" href={profile.emailHref}>{profile.email}</a>
+                <a class="link" href={profile.phoneHref}>{profile.phone}</a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer
+        class="mt-24 flex flex-col gap-1.5 py-10 text-sm text-fg-soft sm:flex-row sm:justify-between"
+      >
+        <p>{profile.footerLeft}</p>
+        <p>{profile.footerRight}</p>
+      </footer>
+    </div>
+  </div>
+</VariantLayout>
+
+<style>
+  /* Tipografia local a la variante. No toca la config global de Tailwind. */
+  .warm {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .warm .display,
+  .warm h1 {
+    font-family: 'Newsreader', Iowan Old Style, Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.011em;
+  }
+
+  .warm h1 {
+    letter-spacing: -0.022em;
+  }
+
+  /* Riel de metadatos: una sola grilla repetida en toda la pagina, siempre con
+     las mismas pistas, para que todas las etiquetas caigan en la misma linea. */
+  .rail {
+    display: grid;
+    gap: 0.35rem 0;
+  }
+
+  .rail-slot {
+    /* En movil la etiqueta va arriba del contenido, sin sangria. */
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .rail {
+      grid-template-columns: 8.5rem minmax(0, 1fr);
+      column-gap: 2.75rem;
+      align-items: baseline;
+    }
+
+    .rail-slot {
+      text-align: right;
+    }
+  }
+
+  /* Titulo corrido: el nombre del proyecto abre el parrafo en serif y el resumen
+     sigue en la misma linea. Sin tarjetas, sin bordes, sin reglas. */
+  .run-in h3 {
+    display: inline;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgb(var(--fg));
+  }
+
+  .run-in h3::after {
+    content: '\00a0\00a0';
+  }
+
+  .label-strong {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(var(--fg));
+  }
+
+  .nav-link:hover {
+    color: rgb(var(--fg));
+  }
+
+  .link {
+    color: rgb(var(--brand));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .skip:focus {
+    left: 1rem;
+    top: 1rem;
+    z-index: 60;
+    background: rgb(var(--panel));
+    color: rgb(var(--fg));
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+  }
+</style>
