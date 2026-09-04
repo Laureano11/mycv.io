@@ -19,7 +19,7 @@ Producir cinco disposiciones alternativas, claras y legibles, en rutas `/v1`…`
 
 ## Alcance
 
-Dentro: paleta, tipografía, jerarquía, estructura de secciones dentro de la página, extracción de datos a un módulo compartido.
+Dentro: paleta, tipografía, jerarquía, estructura de secciones dentro de la página, extracción de datos a un módulo compartido, logos de tecnologías y reagrupación del stack.
 
 Fuera: cambiar textos del CV, agregar o quitar secciones de contenido, agregar dependencias, tocar `index.astro`. La ruta `/` sigue mostrando el sitio actual durante toda la comparación.
 
@@ -27,6 +27,7 @@ Fuera: cambiar textos del CV, agregar o quitar secciones de contenido, agregar d
 
 ```
 src/data/cv.ts                       datos extraídos de index.astro (única fuente)
+public/logos/*.svg                   29 logos de tecnologías (Devicon)
 src/styles/themes.css                4 paletas como variables CSS
 src/components/PaletteSwitcher.astro selector flotante + navegación entre variantes
 src/layouts/VariantLayout.astro      head, fuentes, reset, monta el switcher
@@ -69,7 +70,7 @@ Estas reglas son el objetivo del rediseño, no una preferencia estética. Ningun
 
 1. Cuerpo mínimo 16px. Se permite 14px solo en metadatos cortos (etiquetas, chips, pies).
 2. Texto principal ≥ 7:1 de contraste; texto secundario ≥ 4.5:1. Garantizado por los tokens: usar `fg` y `fg-soft`, nunca grises arbitrarios.
-3. Un solo estilo neutro para los chips de stack. El color se reserva para el acento y para `specialTags` (`UTN-FRBA`, `Team project`), que sí distinguen algo.
+3. Los chips de stack llevan un solo estilo de contenedor (borde `hairline`, fondo `panel`, texto `fg`). El color de marca de los logos es la única excepción cromática permitida dentro del chip; el acento `brand` se reserva para links y para `specialTags` (`UTN-FRBA`, `Team project`).
 4. Los proyectos se leen sin clics. Si una variante colapsa algo, colapsa solo el detalle largo y deja el resumen siempre visible. Prohibido anidar `<details>` dentro de `<details>`.
 5. Párrafos a un ancho máximo de ~70 caracteres.
 6. Se respeta `prefers-reduced-motion` en toda animación.
@@ -85,7 +86,15 @@ Estas reglas son el objetivo del rediseño, no una preferencia estética. Ningun
 | v4 | Cálido personal: tipografía humanista, ritmo relajado | `arcilla` |
 | v5 | Timeline: proyectos en línea de tiempo vertical | `papel` |
 
-Todas cubren el mismo contenido: hero con nombre y rol, datos personales, bio, los 9 proyectos con stack y enlace al repo, familias de arquitectura, grupos de tecnologías, lenguajes, finanzas y mercados, contacto y pie.
+Todas cubren el mismo contenido: hero con nombre y rol, datos personales, bio, los 9 proyectos con stack y enlace al repo, familias de arquitectura, los tres grupos de `techGroups`, finanzas y mercados, contacto y pie.
+
+## Stack con logos
+
+`technologyGroups` (5 grupos) y `languages` se reemplazan por `techGroups`, con tres grupos: `Languages`, `Frameworks and libraries`, `Systems, data and tooling`. Las 46 tecnologías originales se conservan.
+
+Cada entrada es `{ name, logo? }`. `logo` es el nombre de archivo dentro de `public/logos/`. 29 tecnologías tienen logo (Devicon, SVG, color oficial de marca); las 17 restantes no existen en Devicon y se muestran como chip de texto: `SQL`, `Jinja2`, `Spring MVC`, `Spring WebFlux`, `Spring Security`, `JPA`, `SQLModel`, `REST APIs`, `JWT`, `Sessions`, `scipy`, `statsmodels`, `dash`, `yfinance`, `pandas-ta`, `Beautiful Soup 4`, `lxml`.
+
+Los logos son marcas registradas de sus dueños y se usan sin modificar, solo para señalar las tecnologías que el autor maneja.
 
 ## Selector de paleta
 

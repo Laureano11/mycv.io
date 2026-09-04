@@ -18,6 +18,7 @@ Estas reglas aplican a **todas** las tareas. Los requisitos de cada tarea las in
 - **No se agregan dependencias.** No ejecutar `npm install`. `node_modules` está desincronizado con `package.json` (este declara `astro ^6.3.8`, está instalado `astro 5.18.1`); un install limpio rompería el proyecto. Usar lo instalado.
 - **No se modifican los tokens Tailwind existentes** `ink`, `surface`, `line`, `accent`, `accentSoft`: `BaseLayout.astro` depende de ellos.
 - **No se cambia el texto del CV.** Mismo contenido que hoy; cambia la forma.
+- **No se agregan ni se borran archivos en `public/logos/`.** Los 29 logos ya están descargados; una variante los usa, no los gestiona.
 - Cuerpo mínimo **16px** (`text-base`). 14px (`text-sm`) solo en metadatos cortos: chips, etiquetas, pies.
 - Color de texto **únicamente** vía los tokens `fg` y `fg-soft`. Prohibido `text-zinc-*`, `text-gray-*`, `text-slate-*` y cualquier gris literal.
 - **Prohibido `<details>` dentro de `<details>`.** Los proyectos se leen sin clics.
@@ -38,7 +39,7 @@ Estas reglas aplican a **todas** las tareas. Los requisitos de cada tarea las in
 
 **Interfaces:**
 - Consumes: nada.
-- Produces: los tipos `Project`, `Group`, `Fact`, `FinanceItem` y las constantes `profile`, `heroStats`, `facts`, `projects`, `architectureGroups`, `technologyGroups`, `languages`, `finance`. Todas las variantes importan de aquí.
+- Produces: los tipos `Project`, `Group`, `Tech`, `TechGroup`, `Fact`, `FinanceItem` y las constantes `profile`, `heroStats`, `facts`, `projects`, `architectureGroups`, `techGroups`, `finance`. Todas las variantes importan de aquí.
 
 - [ ] **Step 1: Escribir la verificación que falla**
 
@@ -457,15 +458,31 @@ Estructura obligatoria (mismo contenido en las cinco variantes):
 3. Perfil: los nueve `facts` (los que tienen `href` son enlaces) y `profile.bio`.
 4. Proyectos: `profile.projectsNote` y los nueve `projects`, cada uno con `status`, `name`, `summary`, `highlight`, los chips de `stack`, los `specialTags` si existen, y el enlace a `repoUrl` (`target="_blank" rel="noreferrer"`).
 5. Arquitectura: los dos `architectureGroups`.
-6. Tecnologías: los cinco `technologyGroups` más `languages`.
+6. Tecnologías: los tres grupos de `techGroups`. Cada ítem es `{ name, logo? }`: si tiene `logo`, se muestra `<img src={`/logos/${tech.logo}`} alt="" width="20" height="20" loading="lazy" class="h-5 w-5 shrink-0 object-contain" />` antes del nombre; si no, solo el nombre.
 7. Finanzas: los seis `finance` como `label` + `detail`.
 8. Contacto: `profile.contactHeading`, `profile.contactNote`, email y teléfono.
 9. Pie.
 
-Chips de stack — **un solo estilo, sin arcoíris** (reemplaza al `tagClasses` de seis colores del index actual):
+Chips de stack de un proyecto — **un solo estilo, sin arcoíris** (reemplaza al `tagClasses` de seis colores del index actual):
 
 ```astro
 <span class="rounded-full border border-hairline bg-panel px-3 py-1 text-sm text-fg-soft">{item}</span>
+```
+
+Chips de la sección de tecnologías — mismo contenedor, con logo opcional. El padding izquierdo cambia según haya logo o no:
+
+```astro
+<li
+  class:list={[
+    'flex items-center gap-2 rounded-full border border-hairline bg-panel py-1 text-sm text-fg',
+    tech.logo ? 'pl-1.5 pr-3.5' : 'px-3.5',
+  ]}
+>
+  {tech.logo && (
+    <img src={`/logos/${tech.logo}`} alt="" width="20" height="20" loading="lazy" class="h-5 w-5 shrink-0 object-contain" />
+  )}
+  {tech.name}
+</li>
 ```
 
 `specialTags` — aquí sí va el acento, porque distinguen algo real:
