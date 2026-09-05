@@ -95,7 +95,7 @@ export const projects: Project[] = [
     stack: ['Java 17', 'Spring Boot', 'Thymeleaf', 'JPA', 'MySQL', 'Docker'],
     highlight: 'A full stack built around a modular, service-oriented architecture.',
     repoUrl: 'https://github.com/Laureano11/2025-tpa-mi-no-grupo-10',
-    specialTags: ['UTN-FRBA', 'Team project'],
+    specialTags: ['UTN-Project'],
   },
   {
     name: 'pyFINVIZ',
@@ -123,14 +123,14 @@ export const projects: Project[] = [
     stack: ['C', 'GCC', 'GNU Make', 'pthread', 'Sockets', 'Bash'],
     highlight: 'Low-level coordination across multiple Linux processes.',
     repoUrl: 'https://github.com/Laureano11/TP-SO',
-    specialTags: ['UTN-FRBA', 'Team project'],
+    specialTags: ['UTN-Project'],
   },
   {
     name: 'Sistema de Gestión de Turnos',
     status: 'Django app',
     summary:
       'A court-booking platform for padel clubs with admin workflows, payments, configurable preferences and server-rendered UI.',
-    stack: ['Django 5', 'PostgreSQL', 'Tailwind CSS', 'HTMX', 'Python'],
+    stack: ['Django', 'PostgreSQL', 'Tailwind CSS', 'HTMX', 'Python'],
     highlight: 'A practical web app built for real operational flow.',
     repoUrl: 'https://github.com/Laureano11/proyect-holanda',
   },

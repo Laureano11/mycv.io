@@ -70,7 +70,7 @@ Estas reglas son el objetivo del rediseño, no una preferencia estética. Ningun
 
 1. Cuerpo mínimo 16px. Se permite 14px solo en metadatos cortos (etiquetas, chips, pies).
 2. Texto principal ≥ 7:1 de contraste; texto secundario ≥ 4.5:1. Garantizado por los tokens: usar `fg` y `fg-soft`, nunca grises arbitrarios.
-3. Los chips de stack llevan un solo estilo de contenedor (borde `hairline`, fondo `panel`, texto `fg`). El color de marca de los logos es la única excepción cromática permitida dentro del chip; el acento `brand` se reserva para links y para `specialTags` (`UTN-FRBA`, `Team project`).
+3. Los chips de stack llevan un solo estilo de contenedor (borde `hairline`, fondo `panel`, texto `fg`). El color de marca de los logos es la única excepción cromática permitida dentro del chip; el acento `brand` se reserva para links y para `specialTags` (`UTN-Project`).
 4. Los proyectos se leen sin clics. Si una variante colapsa algo, colapsa solo el detalle largo y deja el resumen siempre visible. Prohibido anidar `<details>` dentro de `<details>`.
 5. Párrafos a un ancho máximo de ~70 caracteres.
 6. Se respeta `prefers-reduced-motion` en toda animación.
