@@ -8,6 +8,7 @@
 // contacto) vive en la medida de lectura, grande y en serif.
 // Los proyectos son parrafos con titulo corrido, no tarjetas: se separan por aire.
 import VariantLayout from '../layouts/VariantLayout.astro';
+import StatIcon from '../components/StatIcon.astro';
 import {
   profile,
   heroStats,
@@ -71,8 +72,10 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
             {
               heroStats.map((stat) => (
                 <div class="rail">
-                  <p class="rail-slot display text-xl leading-tight text-fg">{stat.value}</p>
-                  <p class="max-w-[52ch] text-[1.0625rem] leading-7 text-fg-soft">{stat.label}</p>
+                  <p class="rail-slot flex justify-end text-fg-soft">
+                    <StatIcon name={stat.icon} class="h-5 w-5" />
+                  </p>
+                  <p class="max-w-[52ch] text-[1.0625rem] leading-7 text-fg">{stat.text}</p>
                 </div>
               ))
             }

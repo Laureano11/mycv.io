@@ -4,6 +4,7 @@
 // datos de cv.ts, VariantLayout, y SOLO los tokens fg / fg-soft / page / panel /
 // hairline / brand. El CSS propio vive en el <style> de abajo.
 import VariantLayout from '../layouts/VariantLayout.astro';
+import StatIcon from '../components/StatIcon.astro';
 import {
   profile,
   heroStats,
@@ -103,16 +104,16 @@ const nav = [
           {bioClosing && <p class="text-fg-soft">{bioClosing}</p>}
         </div>
 
-        <dl class="mt-8 grid gap-5 border-y border-hairline py-6 sm:grid-cols-3">
+        <ul class="mt-8 grid gap-5 border-y border-hairline py-6 sm:grid-cols-3">
           {
             heroStats.map((stat) => (
-              <div>
-                <dt class="text-xl font-semibold leading-tight text-fg">{stat.value}</dt>
-                <dd class="mt-1 text-base leading-6 text-fg-soft">{stat.label}</dd>
-              </div>
+              <li class="flex items-center gap-3">
+                <StatIcon name={stat.icon} class="h-5 w-5 shrink-0 text-brand" />
+                <span class="text-base leading-6 text-fg">{stat.text}</span>
+              </li>
             ))
           }
-        </dl>
+        </ul>
       </section>
 
       <section id="projects" class="mt-12 scroll-mt-6">

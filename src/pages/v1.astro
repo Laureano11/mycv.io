@@ -3,6 +3,7 @@
 // Patron a copiar: importar datos de cv.ts, envolver en VariantLayout,
 // usar SOLO los tokens fg / fg-soft / page / panel / hairline / brand.
 import VariantLayout from '../layouts/VariantLayout.astro';
+import StatIcon from '../components/StatIcon.astro';
 import {
   profile,
   heroStats,
@@ -56,9 +57,9 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
           <div class="mt-12 grid gap-6 border-y border-hairline py-7 sm:grid-cols-3">
             {
               heroStats.map((stat) => (
-                <div>
-                  <p class="display text-2xl text-fg">{stat.value}</p>
-                  <p class="mt-1.5 text-[0.95rem] leading-6 text-fg-soft">{stat.label}</p>
+                <div class="flex items-center gap-3">
+                  <StatIcon name={stat.icon} class="h-5 w-5 shrink-0 text-brand" />
+                  <p class="text-[1.0625rem] leading-6 text-fg">{stat.text}</p>
                 </div>
               ))
             }

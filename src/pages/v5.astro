@@ -5,6 +5,7 @@
 // cv.ts no tiene fechas y el orden no es temporal, asi que no se numeran
 // ni se etiquetan los hitos con anios.
 import VariantLayout from '../layouts/VariantLayout.astro';
+import StatIcon from '../components/StatIcon.astro';
 import {
   profile,
   heroStats,
@@ -57,16 +58,16 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
           {bioClosing && <p class="text-fg-soft">{bioClosing}</p>}
         </div>
 
-        <dl class="mt-10 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-3">
+        <ul class="mt-10 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-3">
           {
             heroStats.map((stat) => (
-              <div class="bg-panel px-5 py-5">
-                <dt class="text-base leading-6 text-fg-soft">{stat.label}</dt>
-                <dd class="mt-1 text-xl font-semibold leading-7 text-fg">{stat.value}</dd>
-              </div>
+              <li class="flex items-center gap-3 bg-panel px-5 py-5">
+                <StatIcon name={stat.icon} class="h-5 w-5 shrink-0 text-brand" />
+                <span class="text-base leading-6 text-fg">{stat.text}</span>
+              </li>
             ))
           }
-        </dl>
+        </ul>
       </section>
 
       <!-- Perfil -->

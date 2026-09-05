@@ -3,6 +3,7 @@
 // otra forma: la tarjeta se reserva para el proyecto, que es la unidad real.
 // El resto de las secciones se apoya en hairlines y espacio, no en mas tarjetas.
 import VariantLayout from '../layouts/VariantLayout.astro';
+import StatIcon from '../components/StatIcon.astro';
 import {
   profile,
   heroStats,
@@ -54,16 +55,16 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
           {bioClosing && <p class="text-fg-soft">{bioClosing}</p>}
         </div>
 
-        <dl class="mt-10 grid gap-px overflow-hidden rounded-2xl bg-hairline sm:grid-cols-3">
+        <ul class="mt-10 grid gap-px overflow-hidden rounded-2xl bg-hairline sm:grid-cols-3">
           {
             heroStats.map((stat) => (
-              <div class="bg-page px-5 py-5">
-                <dt class="text-2xl font-bold tracking-[-0.02em] text-fg">{stat.value}</dt>
-                <dd class="mt-1 text-base leading-6 text-fg-soft">{stat.label}</dd>
-              </div>
+              <li class="flex items-center gap-3 bg-page px-5 py-5">
+                <StatIcon name={stat.icon} class="h-5 w-5 shrink-0 text-brand" />
+                <span class="text-base leading-6 text-fg">{stat.text}</span>
+              </li>
             ))
           }
-        </dl>
+        </ul>
       </section>
 
       <!-- Datos personales: rejilla con hairlines, no nueve tarjetitas. -->

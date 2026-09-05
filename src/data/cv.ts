@@ -16,7 +16,8 @@ export type TechGroup = { title: string; items: Tech[] };
 /** `note` es una segunda linea dentro de la misma tarjeta de dato. */
 export type Fact = { label: string; value: string; href?: string; note?: string };
 export type FinanceItem = { label: string; detail: string };
-export type HeroStat = { value: string; label: string };
+/** Tarjeta del hero: un icono y una linea de texto. */
+export type HeroStat = { icon: 'person' | 'location' | 'craft'; text: string };
 
 export const profile = {
   name: 'Laureano Enrique',
@@ -40,9 +41,9 @@ Is it the best CV? I don't know, but it perfectly describes what I love, and tha
 };
 
 export const heroStats: HeroStat[] = [
-  { value: '24', label: 'years old, based in Buenos Aires' },
-  { value: '6th year', label: 'Systems Engineering at UTN-FRBA' },
-  { value: 'Skills', label: 'Software Development + Finance' },
+  { icon: 'person', text: '24 years old' },
+  { icon: 'location', text: 'Buenos Aires, Argentina' },
+  { icon: 'craft', text: 'Software Engineer + Trader' },
 ];
 
 export const facts: Fact[] = [
