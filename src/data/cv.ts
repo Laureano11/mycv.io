@@ -8,7 +8,6 @@ export type Project = {
   specialTags?: string[];
 };
 
-export type Group = { title: string; items: string[] };
 /** Una tecnologia del stack. `logo` es el nombre de archivo en /logos/;
  *  si falta, la variante la muestra como chip de texto. */
 export type Tech = { name: string; logo?: string };
@@ -32,7 +31,6 @@ export const profile = {
   bio: `I love mixing finance with software development and simply trying out projects; nowadays, with the use of AI, I can test thousands of technologies and attempt things that used to take me months. I'm passionate about "risking it all." I'm also venturing into automating archaic processes with AI to try to solve problems for people. I'm passionate about what I do and I love learning all the time — I'd say that's my greatest virtue above all others.
 Is it the best CV? I don't know, but it perfectly describes what I love, and that's what matters.`,
   projectsNote: `These days, how many lines of code are written by hand? Very few, to be honest, with the use of AI. That's why, in this sense, I highlight my virtue of understanding software architecture — knowing what a thread is, APIs, workers, databases, lightweight clients, sockets, cookies, requests, CDNs, brokers, cache, and so many more that I'm forgetting`,
-  architectureHeading: 'What I use across product, data and systems work.',
   contactHeading: 'If you are hiring for pragmatic engineering work, let’s talk.',
   contactNote:
     'The page is intentionally simple: it shows what I have built, which stacks I know and the kind of problems I like to solve.',
@@ -142,31 +140,6 @@ export const projects: Project[] = [
     stack: ['Python', 'Requests', 'Beautiful Soup 4'],
     highlight: 'Simple, focused and useful for quick financial checks.',
     repoUrl: 'https://github.com/Laureano11/dolar_mep_calculator',
-  },
-];
-
-export const architectureGroups: Group[] = [
-  {
-    title: 'Architecture families',
-    items: [
-      'Static content sites with CMS-managed pages',
-      'Server-rendered CRUD apps with auth and sessions',
-      'Console-based analytics and backtesting tools',
-      'Scraping pipelines with concurrent workers',
-      'Distributed systems with separate runtime modules',
-      'Modular service-oriented and proxy-based platforms',
-    ],
-  },
-  {
-    title: 'Delivery patterns',
-    items: [
-      'Astro static builds deployed as plain assets',
-      'FastAPI and Django apps for quick iteration',
-      'Dockerized Java services and multi-module stacks',
-      'SQLite-backed local-first development flows',
-      'Batch processing for multiple symbols or tickers',
-      'Multi-terminal Linux workflows for systems labs',
-    ],
   },
 ];
 

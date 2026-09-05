@@ -86,7 +86,7 @@ Estas reglas son el objetivo del rediseño, no una preferencia estética. Ningun
 | v4 | Cálido personal: tipografía humanista, ritmo relajado | `arcilla` |
 | v5 | Timeline: proyectos en línea de tiempo vertical | `papel` |
 
-Todas cubren el mismo contenido: hero con nombre y rol, datos personales, bio, los 9 proyectos con stack y enlace al repo, familias de arquitectura, los tres grupos de `techGroups`, finanzas y mercados, contacto y pie.
+Todas cubren el mismo contenido: hero con nombre y rol, datos personales, bio, los 9 proyectos con stack y enlace al repo, los tres grupos de `techGroups`, finanzas y mercados, contacto y pie.
 
 ## Stack con logos
 

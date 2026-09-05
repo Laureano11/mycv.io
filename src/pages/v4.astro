@@ -14,7 +14,6 @@ import {
   heroStats,
   facts,
   projects,
-  architectureGroups,
   techGroups,
   finance,
 } from '../data/cv.ts';
@@ -170,23 +169,8 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
           <div class="rail">
             <h2 class="rail-slot label-strong">Stack</h2>
             <p class="display max-w-[24ch] text-[clamp(1.6rem,3.4vw,2.1rem)] font-normal leading-[1.25] text-fg">
-              {profile.architectureHeading}
+              Technologies
             </p>
-          </div>
-
-          <div class="mt-12 space-y-10">
-            {
-              architectureGroups.map((group) => (
-                <div class="rail">
-                  <h3 class="rail-slot text-sm leading-6 text-fg-soft">{group.title}</h3>
-                  <ul class="max-w-[64ch] space-y-2 text-[1.0625rem] leading-[1.7] text-fg">
-                    {group.items.map((item) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            }
           </div>
 
           <div class="mt-12 space-y-10">

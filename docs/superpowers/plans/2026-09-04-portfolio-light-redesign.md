@@ -40,7 +40,7 @@ Estas reglas aplican a **todas** las tareas. Los requisitos de cada tarea las in
 
 **Interfaces:**
 - Consumes: nada.
-- Produces: los tipos `Project`, `Group`, `Tech`, `TechGroup`, `Fact`, `FinanceItem` y las constantes `profile`, `heroStats`, `facts`, `projects`, `architectureGroups`, `techGroups`, `finance`. Todas las variantes importan de aquí.
+- Produces: los tipos `Project`, `Tech`, `TechGroup`, `Fact`, `FinanceItem` y las constantes `profile`, `heroStats`, `facts`, `projects`, `techGroups`, `finance`. Todas las variantes importan de aquí.
 
 - [ ] **Step 1: Escribir la verificación que falla**
 
@@ -457,7 +457,6 @@ Estructura obligatoria (mismo contenido en las cinco variantes):
 2. Hero: `profile.name`, `profile.role`, los tres `heroStats`.
 3. Perfil: los nueve `facts` (los que tienen `href` son enlaces) y `profile.bio`.
 4. Proyectos: `profile.projectsNote` y los nueve `projects`, cada uno con `status`, `name`, `summary`, `highlight`, los chips de `stack`, los `specialTags` si existen, y el enlace a `repoUrl` (`target="_blank" rel="noreferrer"`).
-5. Arquitectura: los dos `architectureGroups`.
 6. Tecnologías: los tres grupos de `techGroups`. Cada ítem es `{ name, logo? }`: si tiene `logo`, se muestra `<img src={`/logos/${tech.logo}`} alt="" width="20" height="20" loading="lazy" class="h-5 w-5 shrink-0 object-contain" />` antes del nombre; si no, solo el nombre.
 7. Finanzas: los seis `finance` como `label` + `detail`.
 8. Contacto: `profile.contactHeading`, `profile.contactNote`, email y teléfono.

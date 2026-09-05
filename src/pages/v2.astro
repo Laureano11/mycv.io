@@ -9,7 +9,6 @@ import {
   heroStats,
   facts,
   projects,
-  architectureGroups,
   techGroups,
   finance,
 } from '../data/cv.ts';
@@ -147,32 +146,9 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
 
       <!-- Arquitectura y stack: listas y chips sobre la pagina, sin envolverlas en tarjetas. -->
       <section id="stack" class="pt-16 sm:pt-20">
-        <h2 class="max-w-[26ch] text-3xl font-bold leading-tight tracking-[-0.02em] text-fg">
-          {profile.architectureHeading}
-        </h2>
+        <h2 class="text-3xl font-bold leading-tight tracking-[-0.02em] text-fg">Technologies</h2>
 
-        <div class="mt-8 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-          {
-            architectureGroups.map((group) => (
-              <div>
-                <h3 class="text-lg font-semibold text-fg">{group.title}</h3>
-                <ul class="mt-4 space-y-3">
-                  {group.items.map((item) => (
-                    <li class="flex gap-3 text-[1.0625rem] leading-7 text-fg-soft">
-                      <span
-                        class="mt-3 h-1 w-1 shrink-0 rounded-full bg-brand"
-                        aria-hidden="true"
-                      />
-                      <span class="max-w-[52ch]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          }
-        </div>
-
-        <div class="mt-12 space-y-8">
+        <div class="mt-8 space-y-8">
           {
             techGroups.map((group) => (
               <div>
