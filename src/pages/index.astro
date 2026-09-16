@@ -59,7 +59,7 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
 
       <!-- Datos personales: rejilla con hairlines, no nueve tarjetitas. -->
       <section class="pt-16 sm:pt-20">
-        <h2 class="text-3xl font-bold tracking-[-0.02em] text-fg">Profile</h2>
+        <h2 class="section-title">Profile</h2>
         <dl class="mt-8 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
           {
             facts.map((fact) => (
@@ -85,7 +85,7 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
 
       <!-- Proyectos: aca si, tarjetas. Cada una es una unidad completa y legible sin clics. -->
       <section id="projects" class="pt-16 sm:pt-20">
-        <h2 class="text-3xl font-bold tracking-[-0.02em] text-fg">Projects</h2>
+        <h2 class="section-title">Projects</h2>
         <p class="mt-4 max-w-[68ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
           {profile.projectsNote}
         </p>
@@ -135,9 +135,9 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
         </div>
       </section>
 
-      <!-- Arquitectura y stack: listas y chips sobre la pagina, sin envolverlas en tarjetas. -->
+      <!-- Stack: chips sobre la pagina, sin envolverlos en tarjetas. -->
       <section id="stack" class="pt-16 sm:pt-20">
-        <h2 class="text-3xl font-bold leading-tight tracking-[-0.02em] text-fg">Technologies</h2>
+        <h2 class="section-title">Technologies</h2>
 
         <div class="mt-8 space-y-8">
           {
@@ -173,7 +173,7 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
       </section>
 
       <section id="markets" class="pt-16 sm:pt-20">
-        <h2 class="text-3xl font-bold tracking-[-0.02em] text-fg">Finance and markets</h2>
+        <h2 class="section-title">Finance and markets</h2>
         <dl class="mt-8 grid gap-x-12 sm:grid-cols-2">
           {
             finance.map((item) => (
@@ -193,7 +193,7 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
         id="contact"
         class="mt-16 rounded-3xl border border-brand/20 bg-brand/[0.06] p-6 sm:mt-20 sm:p-10"
       >
-        <h2 class="max-w-[22ch] text-3xl font-bold leading-tight tracking-[-0.02em] text-fg">
+        <h2 class="section-title max-w-[22ch]">
           {profile.contactHeading}
         </h2>
         <p class="mt-4 max-w-[62ch] text-[1.0625rem] leading-[1.75] text-fg-soft">
@@ -227,12 +227,25 @@ const [bioMain, bioClosing] = profile.bio.split('\n');
 </BaseLayout>
 
 <style>
-  /* Tipografia local a la variante: no toca la config global de Tailwind. */
+  /* Tipografia de la pagina: no toca la config global de Tailwind. */
   .soft {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
-  /* Sombra suave, en el color del texto de la paleta activa para no ensuciar el tono. */
+  .section-title {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgb(var(--fg));
+  }
+
+  /* El header es sticky: sin esto el anclaje deja el titulo debajo de la barra. */
+  .soft :global(section[id]) {
+    scroll-margin-top: 4.5rem;
+  }
+
+  /* Sombra suave, en el color del texto de la paleta para no ensuciar el tono. */
   .card {
     box-shadow:
       0 1px 2px rgb(var(--fg) / 0.04),

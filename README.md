@@ -1,67 +1,43 @@
 # mycv.io
 
-Portfolio personal de Lauri, construido con Astro, TypeScript y Tailwind.
+Portfolio personal de Laureano Enrique. Sitio estatico con Astro, TypeScript y Tailwind.
+En produccion: https://laureano-cv.vercel.app
 
-## Estructura
+## Como esta armado
 
-- Home completa con hero, about, projects, stack y contact.
-- Layout base con metadata y tipografías.
-- Estilos globales con look minimalista premium.
+Una sola pagina (`src/pages/index.astro`) que arma todo a partir de un unico
+archivo de datos. Para actualizar el CV casi nunca hace falta tocar el markup.
 
-## Cómo correrlo localmente
+```
+src/data/cv.ts          datos del CV: perfil, proyectos, stack, finanzas
+src/pages/index.astro   la pagina: hero, profile, projects, stack, markets, contact
+src/layouts/BaseLayout.astro  head, fuentes y <body>
+src/components/StatIcon.astro iconos SVG del hero (heredan el color del tema)
+src/styles/themes.css   paleta arcilla como variables CSS
+tailwind.config.mjs     tokens de color que apuntan a esas variables
+public/logos/           logos de tecnologias (Devicon, .svg)
+docs/                   material de referencia, no entra al build
+```
 
-1. Instalá dependencias:
+Los colores viven en `themes.css` como triples RGB (`--fg: 35 24 15`) para que
+Tailwind pueda aplicarles opacidad: `bg-brand/10`, `bg-page/85`.
+
+### Agregar una tecnologia al stack
+
+1. Bajar el `.svg` de [Devicon](https://devicon.dev) a `public/logos/`.
+2. Sumar `{ name: 'X', logo: 'x.svg' }` al grupo que corresponda en `techGroups`.
+   Sin `logo` se muestra como chip de texto.
+
+## Comandos
 
 ```bash
 npm install
+npm run dev      # http://localhost:4321
+npm run build    # genera dist/
+npm run preview  # sirve dist/
 ```
 
-2. Levantá el servidor de desarrollo:
+## Deploy
 
-```bash
-npm run dev
-```
-
-3. Abrí la URL que aparece en consola, normalmente:
-
-```bash
-http://localhost:4321
-```
-
-## Build local
-
-Para probar la versión de producción:
-
-```bash
-npm run build
-npm run preview
-```
-
-## Deploy en GitHub + Vercel
-
-1. Creá un repositorio nuevo en GitHub y subí este proyecto.
-2. Conectá ese repositorio en Vercel desde el dashboard.
-3. Usá estos valores si Vercel te pide configuración manual:
-
-```text
-Framework Preset: Astro
-Build Command: npm run build
-Output Directory: dist
-```
-
-4. Cada vez que hagas push a la rama principal, Vercel va a redeployar automáticamente.
-
-Si querés usar Git desde cero, el flujo mínimo es:
-
-```bash
-git init
-git add .
-git commit -m "Initial portfolio"
-git branch -M main
-git remote add origin <TU_REPO_EN_GITHUB>
-git push -u origin main
-```
-
-## Nota sobre el CV
-
-El botón de descarga apunta a `/cv.pdf`. Si todavía no tenés el archivo final, agregalo en `public/cv.pdf`.
+Vercel sigue la rama `main`: cada push a `main` redeploya. La config esta en
+`vercel.json` (`npm run build` -> `dist`).
